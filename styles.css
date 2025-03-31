@@ -39,6 +39,10 @@ html, body {
     transition: opacity 2s ease-out;
 }
 
+.split-section.blog-header h1 {
+    font-size: 4rem;
+}
+
 .split-section .pointer-down {
     position: absolute;
     bottom: 10%;
@@ -167,6 +171,119 @@ html, body {
     width: 100%;
 }
 
+.blog-header {
+    max-width: 1200px;
+    width: 100%;
+    font-size: 1.5rem;
+    margin: 0 auto;
+    margin-top: 100px;
+    color: #231F20;
+}
+
+/* .blog-header h1::after {
+    display: block;
+    content: '';
+    width: 50px;
+    height: 5px;
+    background: #FDB913;
+    margin-top: 5px;
+} */
+
+.blog-header small {
+    font-size: 1rem;
+}
+
+.blog-content {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    color: #231F20;
+}
+
+.blog-content p {
+    margin-top: 25px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.blog-content ul {
+    margin-left: 15px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.blog-content img {
+    max-width: 100%;
+}
+
+.blog-content strong {
+    color: #FDB913;
+    font-weight: 600;
+}
+
+.blog-content a {
+    color: #231F20;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.home-link {
+    font-size: 0.9rem;
+    color: #231F20;
+    /* float: right; */
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+hr {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-color: #FDB913;
+}
+
+.blogs {
+    border-top: 5px solid #231F20;
+}
+
+.blogs .content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 60px 0px;
+}
+
+.blogs h4 {
+    font-size: 1.25rem;
+    color: #231F20;
+    /* font-style: italic; */
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.blogs a {
+    text-decoration: none;
+    color: #FDB913;
+}
+
+.blogs h3 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-bottom: 45px;
+}
+
+.blogs h3::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 5px;
+    background: #FDB913;
+    margin-top: 5px;
+}
+
 @media (max-width: 1240px) {
     .about .content {
         width: 100%;
@@ -181,6 +298,16 @@ html, body {
     .about .content .me-photo {
         /* flex-basis: 30%; */
         /* margin-bottom: 45px; */
+    }
+
+    .blog-header, .blog-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .blogs .content {
+        width: 100%;
+        padding: 30px;
     }
 }
 
@@ -212,5 +339,9 @@ html, body {
         height: 100%;
         width: 100%;
         max-width: 400px;
+    }
+
+    .blog-header {
+        margin-top: 25px;
     }
 }
