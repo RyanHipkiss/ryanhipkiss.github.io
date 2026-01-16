@@ -1,5 +1,5 @@
 ---
-title: "Moneyball in Football Manager"
+title: "Using data to make informed, strategic decisions"
 description: "Using Python and data analytics to find the perfect players in a virtual simulation."
 keywords: "moneyball, football manager, player evaluation, football analytics,data-driven scouting, sports statistics, FC Midtjylland, player attributes, football simulation, Python football analysis, football metrics, scouting tools, Moneyball FC, football data analysis, virtual scouting, player comparison, football stats, sports data science, algorithmic scouting"
 socialImage: "/data-led-decisions-p1.jpg"
