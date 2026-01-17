@@ -255,6 +255,15 @@ hr {
     padding: 60px 0px;
 }
 
+.blogs .post {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.blogs .post:first-of-type {
+    margin-top: 0;
+}
+
 .blogs h4 {
     font-size: 1.25rem;
     color: #231F20;

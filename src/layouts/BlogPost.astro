@@ -5,31 +5,32 @@ import Footer from '../components/Footer.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, keywords } = Astro.props;
-const socialImageUrl = new URL('/data-led-decisions-p1.jpg', Astro.site).toString();
+const { title, description, keywords, socialImage, publishDate } = Astro.props;
+const socialImageUrl = socialImage ? new URL(socialImage, Astro.site).toString() : '';
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} keywords={keywords}/>
 		<meta property="og:title" content={title} />
-		<meta property="og:image" content={socialImageUrl} />
+		{typeof socialImage !== 'undefined' && (<meta property="og:image" content={socialImageUrl} />)}
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={Astro.request.url} />
 		<meta property="og:type" content="website" />
-		<meta name="twitter:card" content="summary_large_image">
+		{typeof socialImage !== 'undefined' && (<meta name="twitter:card" content="summary_large_image" />)}
 		<meta property="twitter:domain" content="ryanhipkiss.co.uk">
 		<meta property="twitter:url" content={Astro.request.url}>
 		<meta name="twitter:title" content={title}>
 		<meta name="twitter:description" content={description}>
-		<meta name="twitter:image" content={socialImageUrl}>
+		{typeof socialImage !== 'undefined' && (<meta name="twitter:image" content={socialImageUrl} />)}
+		
 	</head>
 
 	<body>
 		<section class="blog-header">
 			<h1>{title}</h1>
-			<small><i>Ryan Hipkiss, Senior Software Engineer</i></small>
-			<small>31st March 2025</small>
+			<small><i>Ryan Hipkiss, Senior Software Engineer</i></small><br>
+			<small>{publishDate}</small>
 			<hr>
 		</section>
 		<section class="blog-content">
