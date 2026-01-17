@@ -4,13 +4,13 @@
 import '../styles/global.css';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
-const { keywords } = Astro.props;
+const { keywords, title } = Astro.props;
 
 ---
 
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{SITE_TITLE}</title>
+    <title>{title}</title>
     <meta name="description" content={SITE_DESCRIPTION}>
     <meta name="robots" content="index, follow">
     <link rel="canonical" href={Astro.request.url}>
