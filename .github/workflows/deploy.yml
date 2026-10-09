@@ -28,6 +28,18 @@ jobs:
         uses: withastro/action@v3
         # This action automatically detects npm/pnpm/yarn and builds the project
 
+  keepalive:
+    # GitHub disables scheduled workflows after 60 days without repo activity.
+    # Re-enabling this workflow on each run resets that timer, so the monthly rebuild keeps going.
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Keep the monthly schedule enabled
+        run: gh api --method PUT "repos/${{ github.repository }}/actions/workflows/deploy.yml/enable"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
