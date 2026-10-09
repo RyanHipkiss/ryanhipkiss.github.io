@@ -1,0 +1,125 @@
+<section id="cookie-banner" class="cookie-banner" aria-label="Cookie consent" hidden>
+	<p>
+		I'd like to use Google Analytics cookies to see how people use this site. They're only set if you accept.
+		<a href="/privacy/">Privacy &amp; cookies</a>
+	</p>
+	<div class="cookie-banner__actions">
+		<button type="button" data-consent="granted">Accept</button>
+		<button type="button" data-consent="denied">Reject</button>
+	</div>
+</section>
+
+<script is:inline>
+	(() => {
+		const KEY = 'cookie-consent';
+		const GA_ID = 'G-CQT66HFK83';
+		const banner = document.getElementById('cookie-banner');
+
+		const read = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
+		const write = (value) => { try { localStorage.setItem(KEY, value); } catch {} };
+
+		// Google tag (gtag.js) - only ever loaded after consent is granted
+		const loadAnalytics = () => {
+			window['ga-disable-' + GA_ID] = false;
+			if (window.gtag) return;
+			window.dataLayer = window.dataLayer || [];
+			window.gtag = function() { dataLayer.push(arguments); };
+			gtag('js', new Date());
+			gtag('config', GA_ID);
+			const script = document.createElement('script');
+			script.async = true;
+			script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+			document.head.appendChild(script);
+		};
+
+		// Stop tracking and remove any GA cookies set under an earlier "accept"
+		const disableAnalytics = () => {
+			window['ga-disable-' + GA_ID] = true;
+			const host = location.hostname;
+			document.cookie.split(';')
+				.map((cookie) => cookie.split('=')[0].trim())
+				.filter((name) => name === '_ga' || name.startsWith('_ga_'))
+				.forEach((name) => {
+					['', host, '.' + host].forEach((domain) => {
+						document.cookie = `${name}=; Max-Age=0; path=/${domain ? '; domain=' + domain : ''}`;
+					});
+				});
+		};
+
+		banner.querySelectorAll('[data-consent]').forEach((button) => {
+			button.addEventListener('click', () => {
+				const choice = button.dataset.consent;
+				write(choice);
+				choice === 'granted' ? loadAnalytics() : disableAnalytics();
+				banner.hidden = true;
+			});
+		});
+
+		document.querySelectorAll('[data-cookie-settings]').forEach((link) => {
+			link.addEventListener('click', (event) => {
+				event.preventDefault();
+				banner.hidden = false;
+				banner.querySelector('button').focus();
+			});
+		});
+
+		const choice = read();
+		if (choice === 'granted') loadAnalytics();
+		else if (choice !== 'denied') banner.hidden = false;
+	})();
+</script>
+
+<style>
+	.cookie-banner {
+		position: fixed;
+		left: 16px;
+		right: 16px;
+		bottom: 16px;
+		z-index: 1000;
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 20px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+		align-items: center;
+		justify-content: space-between;
+		background: #231F20;
+		color: #fff;
+		border-top: 5px solid #FDB913;
+		font-size: 1rem;
+		line-height: 1.5;
+	}
+
+	.cookie-banner[hidden] {
+		display: none;
+	}
+
+	.cookie-banner p {
+		flex: 1 1 320px;
+	}
+
+	.cookie-banner a {
+		color: #FDB913;
+	}
+
+	.cookie-banner__actions {
+		display: flex;
+		gap: 12px;
+	}
+
+	.cookie-banner button {
+		padding: 10px 24px;
+		font: inherit;
+		font-weight: 700;
+		color: #231F20;
+		background: #FDB913;
+		border: 2px solid #FDB913;
+		cursor: pointer;
+	}
+
+	.cookie-banner button:focus-visible {
+		outline: 3px solid #fff;
+		outline-offset: 2px;
+	}
+</style>
