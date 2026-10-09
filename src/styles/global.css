@@ -141,8 +141,17 @@ h1, h2, h3, h4 {
     margin-bottom: 1.5rem;
 }
 
-/* Bold phrases get a gold highlighter stripe: gold text on white is unreadable */
-.about .content .me strong,
+/* Gold text sits on a charcoal tag, the hero's pairing: gold on white is unreadable */
+.about .content .me strong {
+    padding: 0.1em 0.4em;
+    color: #FDB913;
+    font-weight: 700;
+    background: #231F20;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+
+/* In longer post text, bold phrases get a lighter gold highlighter stripe */
 .blog-content strong {
     font-weight: 700;
     background: linear-gradient(transparent 60%, rgba(253, 185, 19, 0.6) 60%);
