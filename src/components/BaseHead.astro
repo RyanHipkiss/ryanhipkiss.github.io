@@ -9,12 +9,18 @@ interface Props {
 	title: string;
 	description?: string;
 	image?: string;
+	/** Describes the share image for screen readers on social platforms */
+	imageAlt?: string;
+	/** Declared so platforms can lay out the preview before fetching the image */
+	imageSize?: { width: number; height: number };
 	type?: 'website' | 'article';
 	publishDate?: Date;
 	noindex?: boolean;
+	/** schema.org structured data for search engines */
+	jsonLd?: Record<string, unknown>;
 }
 
-const { title, description = SITE_DESCRIPTION, image, type = 'website', publishDate, noindex = false } = Astro.props;
+const { title, description = SITE_DESCRIPTION, image, imageAlt, imageSize, type = 'website', publishDate, noindex = false, jsonLd } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 const imageUrl = image ? new URL(image, Astro.site).toString() : undefined;
 ---
@@ -28,15 +34,22 @@ const imageUrl = image ? new URL(image, Astro.site).toString() : undefined;
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/icons/180.png">
 <link rel="manifest" href="/site.webmanifest">
+<link rel="sitemap" href="/sitemap-index.xml">
 <meta name="theme-color" content="#231F20">
 
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
 <meta property="og:url" content={canonicalUrl}>
 <meta property="og:type" content={type}>
+<meta property="og:site_name" content="Ryan Hipkiss">
 {imageUrl && <meta property="og:image" content={imageUrl}>}
+{imageUrl && imageSize && <meta property="og:image:width" content={String(imageSize.width)}>}
+{imageUrl && imageSize && <meta property="og:image:height" content={String(imageSize.height)}>}
+{imageUrl && imageAlt && <meta property="og:image:alt" content={imageAlt}>}
 {publishDate && <meta property="article:published_time" content={publishDate.toISOString()}>}
 <meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'}>
 <meta name="twitter:title" content={title}>
 <meta name="twitter:description" content={description}>
 {imageUrl && <meta name="twitter:image" content={imageUrl}>}
+{imageUrl && imageAlt && <meta name="twitter:image:alt" content={imageAlt}>}
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

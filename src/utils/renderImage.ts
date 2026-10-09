@@ -23,9 +23,18 @@ async function toPng(node: unknown, width: number, height: number) {
 	return sharp(Buffer.from(svg)).png().toBuffer();
 }
 
+export const SHARE_IMAGE_SIZE = { width: 1200, height: 630 };
+
+interface ShareImageOptions {
+	/** Small gold line above the title */
+	eyebrow?: string;
+	/** Grey line under the gold bar */
+	subtitle?: string;
+}
+
 /** 1200x630 share card: the post header's charcoal band and 120deg gold wedge */
-export function renderShareImage(title: string) {
-	const titleSize = title.length > 40 ? 72 : 88;
+export function renderShareImage(title: string, { eyebrow = 'Ryan Hipkiss', subtitle }: ShareImageOptions = {}) {
+	const titleSize = title.length > 40 ? 72 : title.length > 16 ? 88 : 132;
 	return toPng(
 		el('div', {
 			// Explicit size: satori adds padding on top of percentage sizes
@@ -40,15 +49,16 @@ export function renderShareImage(title: string) {
 			backgroundColor: CHARCOAL,
 			backgroundImage: `linear-gradient(120deg, ${CHARCOAL} 72%, ${GOLD} 72%)`,
 		}, [
-			el('div', { fontSize: 36, color: GOLD }, 'Ryan Hipkiss'),
+			el('div', { fontSize: 36, color: GOLD }, eyebrow),
 			el('div', { display: 'flex', flexDirection: 'column' }, [
 				el('div', { maxWidth: 760, fontSize: titleSize, lineHeight: 1.05, color: 'white' }, title),
 				el('div', { width: 80, height: 8, marginTop: 32, backgroundColor: GOLD }),
+				...(subtitle ? [el('div', { maxWidth: 640, marginTop: 28, fontSize: 44, lineHeight: 1.15, color: '#ddd' }, subtitle)] : []),
 			]),
 			el('div', { fontSize: 30, color: '#ddd' }, 'ryanhipkiss.co.uk'),
 		]),
-		1200,
-		630,
+		SHARE_IMAGE_SIZE.width,
+		SHARE_IMAGE_SIZE.height,
 	);
 }
 

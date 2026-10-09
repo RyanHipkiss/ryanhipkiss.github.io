@@ -4,6 +4,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import PostTiles from '../components/PostTiles.astro';
 import { formatDate } from '../utils/formatDate';
+import { SHARE_IMAGE_SIZE } from '../utils/renderImage';
+import { postJsonLd } from '../utils/structuredData';
 
 type Props = CollectionEntry<'blog'>['data'] & {
 	slug: string;
@@ -14,12 +16,23 @@ type Props = CollectionEntry<'blog'>['data'] & {
 const { title, description, socialImage, publishDate, slug, readingMinutes, morePosts } = Astro.props;
 // Posts get a generated charcoal and gold share card unless they set their own image
 const shareImage = socialImage ?? `/og/${slug}.png`;
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const jsonLd = postJsonLd({ title, description, publishDate, url: pageUrl, image: new URL(shareImage, Astro.site).toString() });
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`${title} | Ryan Hipkiss`} description={description} image={shareImage} type="article" publishDate={publishDate} />
+		<BaseHead
+			title={`${title} | Ryan Hipkiss`}
+			description={description}
+			image={shareImage}
+			imageAlt={`${title}, by Ryan Hipkiss`}
+			imageSize={socialImage ? undefined : SHARE_IMAGE_SIZE}
+			type="article"
+			publishDate={publishDate}
+			jsonLd={jsonLd}
+		/>
 	</head>
 
 	<body>

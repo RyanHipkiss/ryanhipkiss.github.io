@@ -4,17 +4,25 @@ import Footer from '../components/Footer.astro'
 import PostTiles from '../components/PostTiles.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { getCollection } from 'astro:content';
-import { Image, getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
+import { SHARE_IMAGE_SIZE } from '../utils/renderImage';
+import { homeJsonLd } from '../utils/structuredData';
 import ME_PHOTO from '../assets/me-2000-2000.png'
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
-const socialImage = await getImage({ src: ME_PHOTO, width: 1200, format: 'jpg' });
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={socialImage.src} />
+		<BaseHead
+			title={SITE_TITLE}
+			description={SITE_DESCRIPTION}
+			image="/og/home.png"
+			imageAlt="Ryan Hipkiss, Senior Software Engineer specialising in Salesforce"
+			imageSize={SHARE_IMAGE_SIZE}
+			jsonLd={homeJsonLd(new URL('/og/home.png', Astro.site).toString())}
+		/>
 	</head>
 	<body>
 		<main>
