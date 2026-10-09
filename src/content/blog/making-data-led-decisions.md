@@ -1,6 +1,6 @@
 ---
 title: "Moneyball in Football Manager: using data to sign better players"
-description: "Using Python and data analytics to find the perfect players in a virtual simulation."
+description: "Using Python and data analytics to find the best-fit players in Football Manager."
 socialImage: "/data-led-decisions-p1.jpg"
 publishDate: 2025-03-31
 ---
@@ -66,6 +66,4 @@ This score will be based off what I deem important for that position, with weigh
 |    Diogo Costa      | GK                    | Not for Sale    |   ?   |
 ```
 
-Keep posted for updates, or follow [fm-player-comparison on GitHub](https://github.com/ryanhipkiss/fm-player-comparison).
-
----
+The code is on GitHub as [fm-player-comparison](https://github.com/ryanhipkiss/fm-player-comparison), if you want to try it on your own save.

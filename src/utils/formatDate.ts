@@ -1,10 +1,4 @@
-// Formats a date the way posts have always displayed it, e.g. "16th January, 2026"
+// Formats a date in UK style, e.g. "16 January 2026"
 export function formatDate(date: Date): string {
-	const day = date.getUTCDate();
-	const suffix = day % 10 === 1 && day !== 11 ? 'st'
-		: day % 10 === 2 && day !== 12 ? 'nd'
-		: day % 10 === 3 && day !== 13 ? 'rd'
-		: 'th';
-	const month = date.toLocaleString('en-GB', { month: 'long', timeZone: 'UTC' });
-	return `${day}${suffix} ${month}, ${date.getUTCFullYear()}`;
+	return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 }
