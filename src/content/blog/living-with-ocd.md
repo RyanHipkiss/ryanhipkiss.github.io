@@ -1,6 +1,6 @@
 ---
 title: "Living with and overcoming OCD"
-description: "An insight into life with Obsessive Compulsive Disorder"
+description: "What 16 years of checking doors and windows was really like, and how group therapy helped me break the cycle. A personal account of living with OCD."
 publishDate: 2026-01-16
 ---
 

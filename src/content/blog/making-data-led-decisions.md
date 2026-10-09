@@ -1,7 +1,6 @@
 ---
 title: "Moneyball in Football Manager: using data to sign better players"
 description: "Using Python and data analytics to find the best-fit players in Football Manager."
-socialImage: "/data-led-decisions-p1.jpg"
 publishDate: 2025-03-31
 ---
 

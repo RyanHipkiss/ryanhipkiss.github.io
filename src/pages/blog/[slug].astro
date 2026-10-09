@@ -23,6 +23,6 @@ const { Content } = await entry.render();
 const readingMinutes = Math.max(1, Math.round(entry.body.split(/\s+/).length / 200));
 ---
 
-<BlogPost {...entry.data} readingMinutes={readingMinutes} morePosts={morePosts}>
+<BlogPost {...entry.data} slug={entry.slug} readingMinutes={readingMinutes} morePosts={morePosts}>
   <Content />
 </BlogPost>

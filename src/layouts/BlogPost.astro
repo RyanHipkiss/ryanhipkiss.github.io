@@ -6,17 +6,20 @@ import PostTiles from '../components/PostTiles.astro';
 import { formatDate } from '../utils/formatDate';
 
 type Props = CollectionEntry<'blog'>['data'] & {
+	slug: string;
 	readingMinutes: number;
 	morePosts: CollectionEntry<'blog'>[];
 };
 
-const { title, description, socialImage, publishDate, readingMinutes, morePosts } = Astro.props;
+const { title, description, socialImage, publishDate, slug, readingMinutes, morePosts } = Astro.props;
+// Posts get a generated charcoal and gold share card unless they set their own image
+const shareImage = socialImage ?? `/og/${slug}.png`;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} image={socialImage} type="article" publishDate={publishDate} />
+		<BaseHead title={`${title} | Ryan Hipkiss`} description={description} image={shareImage} type="article" publishDate={publishDate} />
 	</head>
 
 	<body>
