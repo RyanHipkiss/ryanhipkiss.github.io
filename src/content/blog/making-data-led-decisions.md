@@ -1,9 +1,11 @@
 ---
-title: "Using data to make informed, strategic decisions"
+title: "Moneyball in Football Manager: using data to sign better players"
 description: "Using Python and data analytics to find the perfect players in a virtual simulation."
 socialImage: "/data-led-decisions-p1.jpg"
 publishDate: 2025-03-31
 ---
+
+How do you compete with teams that can spend three times as much as you?
 
 That's the question Billy Beane of the Oakland Athletics asked. In 2002, building upon his predecessor Alderson's crafting of the A's into a cost-effective team, they won 20 consecutive matches to be the first team in American League baseball to do so in 100+ years.
 
@@ -11,7 +13,7 @@ That's the question Billy Beane of the Oakland Athletics asked. In 2002, buildin
 
 With many in football now attempting to do the same - instead of buying the "show" players, you buy tackles, blocks, shots, effort. You buy wins.
 
-Popularised in Football by FC Midtjylland - they're most commonly nicknamed "Moneyball FC". See more on them [here](https://www.bbc.co.uk/sport/football/54651454)
+Popularised in Football by FC Midtjylland - they're most commonly nicknamed "Moneyball FC". The BBC has [more on how FC Midtjylland use data](https://www.bbc.co.uk/sport/football/54651454).
 
 But how do we transfer this into a virtual simulation?
 
@@ -41,7 +43,7 @@ A Center Back. Win the ball, ensure the team keeps the ball. Nothing more.
 
 The first step is retrieving the data from the game. An easy way to do this, and have it readable is to export as a HTML file, which provides us with a nice, but scary looking, table.
 
-![FM Data Example](/fm-data-table.jpg)
+![A Football Manager export of 20+ players, with columns for position, age, transfer value and dozens of per-90 stats like xG, tackles, interceptions and pass completion](/fm-data-table.jpg)
 
 This is only just the start of the data. But what it provides, is an opportunity to dig into it and see what is really happening with each player.
 
@@ -49,8 +51,21 @@ My chosen path is to build this program using Python, and run it as a CLI comman
 
 This score will be based off what I deem important for that position, with weights applied to each statistic based on its level of importance. The end result will look something like:
 
-![](/python-example.png)
+```text
+|        Name         |       Position        |      Value      | Score |
+|---------------------|-----------------------|-----------------|-------|
+|    Breno Barros     | D (RL), WB/AM (R)     | £120M - £186M   |   ?   |
+|    Josen Escobar    | D (R), DM, M (C)      | £104M - £154M   |   ?   |
+|  Benoît Badiashile  | D (C)                 | £17.5M - £27M   |   ?   |
+|    Yaell Samson     | GK                    | £4.6M - £7.4M   |   ?   |
+|  Ibrahima Konaté    | D (C), DM             | £44M - £65M     |   ?   |
+|   Dennis Seimen     | GK                    | £74M - £114M    |   ?   |
+|    Jonas Urbig      | GK                    | £70M - £106M    |   ?   |
+|  Marcus Rashford    | M (L), AM (LC), ST (C)| £14.5M - £21M   |   ?   |
+|   Quinten Timber    | D (C), DM, M/AM (C)   | £28M - £43M     |   ?   |
+|    Diogo Costa      | GK                    | Not for Sale    |   ?   |
+```
 
-Keep posted for updates, or follow the GitHub repository [here](https://github.com/ryanhipkiss/fm-player-comparison)
+Keep posted for updates, or follow [fm-player-comparison on GitHub](https://github.com/ryanhipkiss/fm-player-comparison).
 
 ---

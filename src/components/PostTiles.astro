@@ -4,14 +4,16 @@ import { formatDate } from '../utils/formatDate';
 
 interface Props {
 	posts: CollectionEntry<'blog'>[];
+	/** Give the first post a double-width tile */
+	featureFirst?: boolean;
 }
 
-const { posts } = Astro.props;
+const { posts, featureFirst = false } = Astro.props;
 ---
 
 <ul class="post-grid">
-	{posts.map((post) => (
-		<li>
+	{posts.map((post, i) => (
+		<li class={featureFirst && i === 0 ? 'featured' : undefined}>
 			<a class="post-tile" href={`/blog/${post.slug}/`}>
 				<time datetime={post.data.publishDate.toISOString().slice(0, 10)}>{formatDate(post.data.publishDate)}</time>
 				<h4>{post.data.title}</h4>

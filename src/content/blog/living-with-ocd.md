@@ -1,5 +1,5 @@
 ---
-title: "Living with, and overcoming OCD"
+title: "Living with and overcoming OCD"
 description: "An insight into life with Obsessive Compulsive Disorder"
 publishDate: 2026-01-16
 ---
@@ -34,6 +34,14 @@ You guessed it, I went full in. Every check, I cut down to one time. I was allow
 
 A few months later, I'm sat here and I'm fully in recovery. I have the odd flare up, sure, but I have been dealing with this for more than half my life. 
 
-If you're struggling with OCD yourself, it's okay. I hid mine from everyone for years. Try to seek professional help, it can be cured.
+If you're struggling with OCD yourself, it's okay. I hid mine from everyone for years. Try to seek professional help. It is treatable.
 
-OCD sucks. 
+OCD sucks.
+
+---
+
+## If you need support
+
+* [OCD-UK](https://www.ocduk.org/) is a UK charity run by and for people with OCD, with advice and support groups.
+* The [NHS guide to OCD](https://www.nhs.uk/mental-health/conditions/obsessive-compulsive-disorder-ocd/) explains the symptoms and the treatments available.
+* In England you can [refer yourself to NHS Talking Therapies](https://www.nhs.uk/service-search/mental-health/find-an-nhs-talking-therapies-service) without seeing your GP first. 
