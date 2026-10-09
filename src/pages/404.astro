@@ -1,0 +1,43 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Page not found | Ryan Hipkiss" description="This page doesn't exist." noindex />
+	</head>
+	<body>
+		<section class="split-section">
+			<div class="content">
+				<h1>404</h1>
+				<h2>Questionable transfer. This page doesn't exist.</h2>
+				<p class="not-found-link"><a href="/">Back to the homepage</a></p>
+			</div>
+		</section>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.not-found-link {
+		margin-top: 2rem;
+		text-align: center;
+		font-size: 1.25rem;
+	}
+
+	.not-found-link a {
+		display: inline-block;
+		padding: 12px 28px;
+		color: #231F20;
+		background: #fff;
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.not-found-link a:focus-visible {
+		outline: 3px solid #fff;
+		outline-offset: 3px;
+	}
+</style>

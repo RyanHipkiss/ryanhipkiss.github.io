@@ -24,9 +24,6 @@ html, body {
 .split-section .content h1 {
     font-size: 10rem;
     color: white;
-    opacity: 0;
-    transform: translateY(-100px); /* Start above the screen */
-    transition: transform 1s ease-out, opacity 1s ease-out;
 }
 
 .split-section .content h2 {
@@ -35,8 +32,6 @@ html, body {
     text-align: center;
     margin-top: 1rem;
     font-style: italic;
-    opacity: 0;
-    transition: opacity 2s ease-out;
 }
 
 .split-section.blog-header h1 {
@@ -48,10 +43,55 @@ html, body {
     bottom: 10%;
     left: 50%;
     transform:translateX(-50%);
+    display: block;
     width: 50px;
     height: 50px;
     fill: white;
-    cursor: pointer;
+}
+
+.split-section .pointer-down:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 6px;
+}
+
+.split-section .pointer-down svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Intro animations only run for visitors who haven't asked for reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .split-section .content h1 {
+        animation: drop-in 1s ease-out both;
+    }
+
+    .split-section .content h2 {
+        animation: fade-in 2s ease-out 1s both;
+    }
+
+    .split-section .pointer-down svg {
+        animation: pulse 2.2s ease-in-out 1s infinite alternate;
+    }
+}
+
+@keyframes drop-in {
+    from { opacity: 0; transform: translateY(-100px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    from { transform: scale(0.8); }
+    to { transform: scale(1.2); }
 }
 
 .about {
@@ -132,15 +172,6 @@ html, body {
     height: 5px;
     background: #FDB913;
 } */
-
-.split-section .content h1.animate {
-    opacity: 1;
-    transform: translateY(0); /* Bring it back to its normal position */
-}
-
-.split-section .content h2.fade-in {
-    opacity: 1;
-}
 
 .footer {
     display: flex;
@@ -275,7 +306,21 @@ hr {
 
 .blogs a {
     text-decoration: none;
-    color: #FDB913;
+    color: #231F20;
+}
+
+.blogs a:hover,
+.blogs a:focus-visible {
+    text-decoration: underline;
+}
+
+.blogs .post small {
+    color: #555;
+}
+
+.blogs .post p {
+    margin-top: 8px;
+    line-height: 1.6;
 }
 
 .blogs h3 {

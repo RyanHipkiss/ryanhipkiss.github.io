@@ -1,8 +1,7 @@
 ---
 title: "Living with, and overcoming OCD"
 description: "An insight into life with Obsessive Compulsive Disorder"
-keywords: ""
-publishDate: "16th January, 2026"
+publishDate: 2026-01-16
 ---
 
 "I'm a little OCD myself". 
@@ -11,7 +10,7 @@ The words every true OCD sufferer hates to hear.
 
 Now, you might actually suffer from OCD - but from experience, someone that is truly struggling with OCD won't utter these words. Liking things in alphabetical order, or feeling bothered by a crooked mirror doesn't mean you have OCD. 
 
-Obsessive Compulsive Disorder is a debilitating mental health condition that involves uncontrollable thoughts (obsessions) and behaviours (compulsions) that severely impact on the sufferers life. For me, this was around doors and windows. I didn't have any particular thoughts, at least not any of the typical "If I don't this then this will happen" but for me I just could not settle unless my checks of the doors "felt right". 
+Obsessive Compulsive Disorder is a debilitating mental health condition that involves uncontrollable thoughts (obsessions) and behaviours (compulsions) that severely impact on the sufferer's life. For me, this was around doors and windows. I didn't have any particular thoughts, at least not any of the typical "If I don't do this then this will happen" but for me I just could not settle unless my checks of the doors "felt right". 
 
 This resulted in me spending a lot of my life checking. I would sometimes be unable to go to bed because of it. I broke down. 
 
@@ -19,7 +18,7 @@ But it wasn't always like this. There was a time where I didn't have it. Over ti
 
 Honestly if I had to have a guess I'd say I suffered with OCD for at least the last 16 years. That's more than half my life. But to begin with it was just a couple extra checks when I left the house. 
 
-I moved out of the family home, and over time, day by day, the checks got worse. They expanded to not only the home but to the car, the office. I would refuse to stay at someones house while they were on holiday because I didn't want to be responsible for it. 
+I moved out of the family home, and over time, day by day, the checks got worse. They expanded to not only the home but to the car, the office. I would refuse to stay at someone's house while they were on holiday because I didn't want to be responsible for it. 
 
 The final straw came when it got so bad that I broke down because I couldn't go up to bed. I just sat at the bottom of the stairs for 2 hours. The anxiety took over and I couldn't think.
 

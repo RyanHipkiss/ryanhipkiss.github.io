@@ -1,9 +1,8 @@
 ---
 title: "Using data to make informed, strategic decisions"
 description: "Using Python and data analytics to find the perfect players in a virtual simulation."
-keywords: "moneyball, football manager, player evaluation, football analytics,data-driven scouting, sports statistics, FC Midtjylland, player attributes, football simulation, Python football analysis, football metrics, scouting tools, Moneyball FC, football data analysis, virtual scouting, player comparison, football stats, sports data science, algorithmic scouting"
 socialImage: "/data-led-decisions-p1.jpg"
-publishDate: "31st March, 2025"
+publishDate: 2025-03-31
 ---
 
 That's the question Billy Beane of the Oakland Athletics asked. In 2002, building upon his predecessor Alderson's crafting of the A's into a cost-effective team, they won 20 consecutive matches to be the first team in American League baseball to do so in 100+ years.

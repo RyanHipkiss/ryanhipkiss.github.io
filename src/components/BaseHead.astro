@@ -2,66 +2,37 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_DESCRIPTION } from '../consts';
 
-const { keywords, title } = Astro.props;
+interface Props {
+	title: string;
+	description?: string;
+	image?: string;
+	type?: 'website' | 'article';
+	publishDate?: Date;
+	noindex?: boolean;
+}
 
+const { title, description = SITE_DESCRIPTION, image, type = 'website', publishDate, noindex = false } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const imageUrl = image ? new URL(image, Astro.site).toString() : undefined;
 ---
 
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
-    <meta name="description" content={SITE_DESCRIPTION}>
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href={Astro.request.url}>
-	<link rel="icon" type="image/png" href="/favicon.png">
-    <meta name="keywords" content={keywords} />
-	 <script is:inline>
-		// Wait for the window to load before triggering the animation
-		window.onload = function() {
-			const name = document.getElementById('name');
-			const subhead = document.getElementById('subhead');
-			name.classList.add('animate'); // Add the animate class to trigger the animation
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description}>
+<meta name="robots" content={noindex ? 'noindex' : 'index, follow'}>
+<link rel="canonical" href={canonicalUrl}>
+<link rel="icon" type="image/png" href="/favicon.png">
 
-			name.addEventListener('transitionend', () => {
-				subhead.classList.add('fade-in')
-			})
-
-			subhead.addEventListener('transitionstart', () => {
-				const svgElement = document.getElementById('pointDownFinger');
-				let scale = 1;
-				let growing = true;
-				const maxScale = 1.2;
-				const minScale = 0.8;
-				const speed = 0.003;
-
-				function animate() {
-					if (growing) {
-					scale += speed;
-					if (scale >= maxScale) growing = false;
-					} else {
-					scale -= speed;
-					if (scale <= minScale) growing = true;
-					}
-
-					svgElement.style.transform = `scale(${scale})`;
-					svgElement.style.transformOrigin = "50% 50%"; // Ensure it scales from the center
-
-					requestAnimationFrame(animate);
-				}
-				animate();
-
-
-			})
-
-			const pointDownEvent = (event) => {
-				document.getElementById('whoAmI').scrollIntoView({ 
-					behavior: 'smooth', // Smooth scrolling effect,
-					block: 'start'
-				});
-			}
-
-			document.getElementById('pointDownFinger').onclick = pointDownEvent
-		};
-	 </script>
-</head>
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={canonicalUrl}>
+<meta property="og:type" content={type}>
+{imageUrl && <meta property="og:image" content={imageUrl}>}
+{publishDate && <meta property="article:published_time" content={publishDate.toISOString()}>}
+<meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'}>
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+{imageUrl && <meta name="twitter:image" content={imageUrl}>}
