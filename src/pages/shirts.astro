@@ -1,0 +1,89 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import ShirtTile from '../components/ShirtTile.astro';
+import { SHARE_IMAGE_SIZE } from '../utils/renderImage';
+import { shirts, shirtStats, shirtTypes, shirtContinents } from '../utils/shirts';
+
+const { oldest } = shirtStats;
+const description = `My football shirt collection: ${shirtStats.shirts} shirts from ${shirtStats.teams} teams in ${shirtStats.countries} countries.`;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Shirt collection | Ryan Hipkiss"
+			description={description}
+			image="/og/shirts.png"
+			imageAlt={description}
+			imageSize={SHARE_IMAGE_SIZE}
+		/>
+	</head>
+
+	<body>
+		<header class="post-header">
+			<div class="shirts-column">
+				<a href="/" class="post-back">Back to homepage</a>
+				<h1>Shirt collection</h1>
+				<ul class="shirt-stats">
+					<li><strong>{shirtStats.shirts}</strong> shirts</li>
+					<li><strong>{shirtStats.teams}</strong> teams</li>
+					<li><strong>{shirtStats.countries}</strong> countries</li>
+					<li><strong>{shirtStats.continents}</strong> continents</li>
+					<li>Oldest: <strong>{oldest.team} {oldest.season}</strong></li>
+				</ul>
+			</div>
+		</header>
+
+		<main class="shirts-column shirts">
+			<div class="shirt-filters">
+				<fieldset>
+					<legend>Continent</legend>
+					<button type="button" data-filter="continent" data-value="" aria-pressed="true">All</button>
+					{shirtContinents.map((c) => <button type="button" data-filter="continent" data-value={c} aria-pressed="false">{c}</button>)}
+				</fieldset>
+				<fieldset>
+					<legend>Kit</legend>
+					<button type="button" data-filter="type" data-value="" aria-pressed="true">All</button>
+					{shirtTypes.map((t) => <button type="button" data-filter="type" data-value={t} aria-pressed="false">{t}</button>)}
+				</fieldset>
+				<p class="shirt-count" aria-live="polite">Showing all {shirts.length} shirts</p>
+			</div>
+
+			<ul class="shirt-grid">
+				{shirts.map((shirt) => <ShirtTile shirt={shirt} />)}
+			</ul>
+			<p class="shirt-note">Illustrations are drawn from each kit's colours, not photos of the shirts themselves.</p>
+		</main>
+		<Footer />
+
+		<script>
+			// Continent and kit filters; with JavaScript off, every shirt simply shows
+			const selected: Record<string, string> = { continent: '', type: '' };
+			const tiles = [...document.querySelectorAll<HTMLElement>('.shirt-tile')];
+			const count = document.querySelector('.shirt-count')!;
+
+			document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((button) => {
+				button.addEventListener('click', () => {
+					const filter = button.dataset.filter!;
+					selected[filter] = button.dataset.value!;
+					document.querySelectorAll<HTMLButtonElement>(`[data-filter="${filter}"]`).forEach((b) => {
+						b.setAttribute('aria-pressed', String(b === button));
+					});
+
+					let shown = 0;
+					for (const tile of tiles) {
+						const match = (!selected.continent || tile.dataset.continent === selected.continent)
+							&& (!selected.type || tile.dataset.type === selected.type);
+						tile.hidden = !match;
+						if (match) shown++;
+					}
+					count.textContent = shown === tiles.length
+						? `Showing all ${shown} shirts`
+						: shown === 0 ? 'No shirts match those filters' : `Showing ${shown} of ${tiles.length} shirts`;
+				});
+			});
+		</script>
+	</body>
+</html>

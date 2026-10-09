@@ -1,0 +1,19 @@
+---
+import Shirt from './Shirt.astro';
+import type { Shirt as ShirtData } from '../utils/shirts';
+
+interface Props {
+	shirt: ShirtData;
+}
+
+const { shirt } = Astro.props;
+const kind = shirt.type === 'Goalkeeper' ? 'Goalkeeper shirt' : shirt.type === 'Training' ? 'Training top' : `${shirt.type} shirt`;
+const where = [shirt.league, shirt.country].filter(Boolean).join(', ');
+---
+
+<li class="shirt-tile" data-type={shirt.type} data-continent={shirt.continent}>
+	<Shirt kit={shirt.kit} id={shirt.id} />
+	<h3>{shirt.team}</h3>
+	<p class="shirt-kind">{kind}{shirt.season && `, ${shirt.season}`}</p>
+	{where && <p class="shirt-where">{where}</p>}
+</li>

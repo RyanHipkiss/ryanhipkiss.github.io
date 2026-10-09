@@ -1,0 +1,82 @@
+---
+// A flat football shirt drawn in a kit's colours, outlined in charcoal like the site's tiles.
+// With no kit it draws a dashed "?" shirt.
+import type { Kit } from '../data/kits';
+
+interface Props {
+	kit?: Kit;
+	/** Unique per page, for the pattern clip path */
+	id: string;
+}
+
+const { kit, id } = Astro.props;
+const CHARCOAL = '#231F20';
+
+const body = 'M52 26 L78 18 Q100 40 122 18 L148 26 L142 66 L142 184 L58 184 L58 66 Z';
+const leftSleeve = 'M52 26 L16 60 L36 84 L58 66 Z';
+const rightSleeve = 'M148 26 L184 60 L164 84 L142 66 Z';
+const collar = 'M78 18 Q100 40 122 18';
+
+const pattern = kit?.pattern ?? 'plain';
+const accent = kit?.accent ?? kit?.trim;
+const columns = Array.from({ length: 7 }, (_, i) => 52 + i * 16);
+const rows = Array.from({ length: 7 }, (_, i) => 30 + i * 24);
+const pins = Array.from({ length: 13 }, (_, i) => 54 + i * 8);
+---
+
+<svg class="shirt" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+	{kit ? (
+		<>
+			<defs>
+				<clipPath id={`shirt-${id}`}><path d={body} /></clipPath>
+			</defs>
+			<path d={leftSleeve} fill={kit.sleeves ?? kit.body} />
+			<path d={rightSleeve} fill={kit.sleeves ?? kit.body} />
+			<path d={body} fill={kit.body} />
+			<g clip-path={`url(#shirt-${id})`} fill={accent}>
+				{pattern === 'stripes' && columns.map((x) => <rect x={x + 8} y="0" width="8" height="200" />)}
+				{pattern === 'hoops' && rows.map((y) => <rect x="0" y={y} width="200" height="12" />)}
+				{pattern === 'halves' && <rect x="100" y="0" width="100" height="200" />}
+				{pattern === 'sash' && <polygon points="40,44 62,20 166,160 144,190" />}
+				{pattern === 'cross' && (
+					<>
+						<polygon points="40,44 62,20 166,160 144,190" />
+						<polygon points="160,44 138,20 34,160 56,190" />
+					</>
+				)}
+				{pattern === 'pair' && (
+					<>
+						<rect x="84" y="0" width="9" height="200" />
+						<rect x="107" y="0" width="9" height="200" />
+					</>
+				)}
+				{pattern === 'pinstripes' && pins.map((x) => <rect x={x} y="0" width="2" height="200" />)}
+				{pattern === 'graphic' && (
+					// Diagonal bands at the hero's 120deg angle
+					<g transform="rotate(30 100 100)">
+						<rect x="30" y="40" width="160" height="14" />
+						<rect x="30" y="92" width="160" height="22" />
+						<rect x="30" y="150" width="160" height="10" />
+					</g>
+				)}
+			</g>
+			<path d={collar} fill="none" stroke={kit.trim} stroke-width="7" />
+			<line x1="17" y1="62" x2="35" y2="82" stroke={kit.cuffs ?? kit.trim} stroke-width="7" />
+			<line x1="183" y1="62" x2="165" y2="82" stroke={kit.cuffs ?? kit.trim} stroke-width="7" />
+			<g fill="none" stroke={CHARCOAL} stroke-width="4" stroke-linejoin="round">
+				<path d={leftSleeve} />
+				<path d={rightSleeve} />
+				<path d={body} />
+			</g>
+		</>
+	) : (
+		<>
+			<g fill="#fff" stroke={CHARCOAL} stroke-width="4" stroke-linejoin="round" stroke-dasharray="8 6">
+				<path d={leftSleeve} />
+				<path d={rightSleeve} />
+				<path d={body} />
+			</g>
+			<text x="100" y="138" text-anchor="middle" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-weight="700" font-size="72" fill="#231F20">?</text>
+		</>
+	)}
+</svg>

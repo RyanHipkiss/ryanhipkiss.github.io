@@ -451,6 +451,180 @@ h1, h2, h3, h4, .tagline {
     margin-top: 5px;
 }
 
+/* Shirt collection: tiles share the 5px charcoal frame of the post tiles */
+.shirts-column {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.post-header .shirts-column {
+    position: relative;
+    z-index: 1;
+}
+
+.shirt-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    margin-top: 24px;
+    list-style: none;
+    color: #ddd;
+}
+
+.shirt-stats strong {
+    color: white;
+}
+
+.shirts {
+    padding-top: 50px;
+    padding-bottom: 70px;
+    color: #231F20;
+}
+
+.shirt-filters {
+    margin-bottom: 40px;
+}
+
+.shirt-filters fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    border: none;
+}
+
+.shirt-filters legend {
+    float: left;
+    width: 100px;
+    font-weight: 700;
+}
+
+.shirt-filters button {
+    padding: 8px 14px;
+    font: inherit;
+    font-size: 0.95rem;
+    color: #231F20;
+    background: white;
+    border: 3px solid #231F20;
+    cursor: pointer;
+}
+
+.shirt-filters button:hover {
+    background: #f1f1f1;
+}
+
+.shirt-filters button[aria-pressed="true"] {
+    color: #FDB913;
+    background: #231F20;
+}
+
+.shirt-filters button:focus-visible,
+.shirts-link:focus-visible {
+    outline: 3px solid #FDB913;
+    outline-offset: 3px;
+}
+
+.shirt-count {
+    margin-top: 8px;
+    color: #555;
+}
+
+.shirt-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    list-style: none;
+}
+
+.shirt-tile {
+    padding: 20px 20px 24px;
+    border: 5px solid #231F20;
+}
+
+.shirt-tile[hidden] {
+    display: none;
+}
+
+.shirt-tile .shirt {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto 16px;
+}
+
+.shirt-tile h3 {
+    font-size: 1.6rem;
+    line-height: 1.1;
+}
+
+.shirt-kind {
+    margin-top: 6px;
+    font-weight: 700;
+}
+
+.shirt-where {
+    margin-top: 4px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.shirt-note {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.shirts-intro {
+    width: 100%;
+    margin: -15px 0 30px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.shirts-link {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 24px;
+    font-weight: 700;
+    color: #FDB913;
+    text-decoration: none;
+    background: #231F20;
+}
+
+.shirts-link:hover {
+    color: #231F20;
+    background: #FDB913;
+}
+
+@media (max-width: 1000px) {
+    .shirt-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .shirt-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .shirt-tile {
+        padding: 14px 12px 18px;
+    }
+
+    .shirt-tile h3 {
+        font-size: 1.3rem;
+    }
+
+    .shirt-filters legend {
+        float: none;
+        width: 100%;
+    }
+}
+
 @media (max-width: 1240px) {
     .about .content {
         width: 100%;

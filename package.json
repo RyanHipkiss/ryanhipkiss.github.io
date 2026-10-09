@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "shirts:sync": "node scripts/sync-shirts.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",

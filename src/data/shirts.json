@@ -1,0 +1,370 @@
+[
+	{
+		"team": "Santos Laguna",
+		"type": "Third",
+		"season": "21/22",
+		"league": "Liga MX",
+		"country": "Mexico",
+		"continent": "North America"
+	},
+	{
+		"team": "Millstone FC",
+		"type": "Home",
+		"season": "",
+		"league": "Sheffield Imperial Sunday League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "US Catanzaro 1929",
+		"type": "Special",
+		"season": "24/25",
+		"league": "Serie B",
+		"country": "Italy",
+		"continent": "Europe"
+	},
+	{
+		"team": "Sassuolo",
+		"type": "Away",
+		"season": "18/19",
+		"league": "Serie A",
+		"country": "Italy",
+		"continent": "Europe"
+	},
+	{
+		"team": "Juventus",
+		"type": "Third",
+		"season": "18/19",
+		"league": "Serie A",
+		"country": "Italy",
+		"continent": "Europe"
+	},
+	{
+		"team": "Costa Rica",
+		"type": "Home",
+		"season": "2014",
+		"league": "National",
+		"country": "Costa Rica",
+		"continent": "North America"
+	},
+	{
+		"team": "Billingham United",
+		"type": "Home",
+		"season": "",
+		"league": "",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "England",
+		"type": "Training",
+		"season": "09/10",
+		"league": "National",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "PSKC Cimahi",
+		"type": "Third",
+		"season": "23/24",
+		"league": "Liga 2",
+		"country": "Indonesia",
+		"continent": "Asia"
+	},
+	{
+		"team": "FC Juarez",
+		"type": "Home",
+		"season": "22/23",
+		"league": "Liga MX",
+		"country": "Mexico",
+		"continent": "North America"
+	},
+	{
+		"team": "Valencia",
+		"type": "Home",
+		"season": "21/22",
+		"league": "La Liga",
+		"country": "Spain",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Home",
+		"season": "18/19",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Home",
+		"season": "19/20",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Home",
+		"season": "20/21",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Home",
+		"season": "21/22",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Home",
+		"season": "22/23",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Training",
+		"season": "23/24",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Away",
+		"season": "23/24",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Training",
+		"season": "24/25",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Home",
+		"season": "24/25",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Away",
+		"season": "24/25",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Third",
+		"season": "24/25",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Goalkeeper",
+		"season": "24/25",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Training",
+		"season": "24/25",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Wolves",
+		"type": "Training",
+		"season": "24/25",
+		"league": "Premier League",
+		"country": "England",
+		"continent": "Europe"
+	},
+	{
+		"team": "Viborg FF",
+		"type": "Away",
+		"season": "23/24",
+		"league": "Danish Superliga",
+		"country": "Denmark",
+		"continent": "Europe"
+	},
+	{
+		"team": "Club Alianza Lima",
+		"type": "Home",
+		"season": "00/01",
+		"league": "Primera Division",
+		"country": "Peru",
+		"continent": "South America"
+	},
+	{
+		"team": "Red Star Paris",
+		"type": "Away",
+		"season": "24/25",
+		"league": "Ligue 2",
+		"country": "France",
+		"continent": "Europe"
+	},
+	{
+		"team": "Orange County SC",
+		"type": "Third",
+		"season": "2023",
+		"league": "USL Championship",
+		"country": "USA",
+		"continent": "North America"
+	},
+	{
+		"team": "Atlas",
+		"type": "Special",
+		"season": "23/24",
+		"league": "Liga MX",
+		"country": "Mexico",
+		"continent": "North America"
+	},
+	{
+		"team": "Porto",
+		"type": "Away",
+		"season": "23/24",
+		"league": "Liga Portugal",
+		"country": "Portugal",
+		"continent": "Europe"
+	},
+	{
+		"team": "Willem II",
+		"type": "Away",
+		"season": "24/25",
+		"league": "Eredivisie",
+		"country": "Netherlands",
+		"continent": "Europe"
+	},
+	{
+		"team": "Defensores de Cambaceres",
+		"type": "Home",
+		"season": "13/14",
+		"league": "Primera Division C",
+		"country": "Argentina",
+		"continent": "South America"
+	},
+	{
+		"team": "Kristiansund",
+		"type": "Third",
+		"season": "21",
+		"league": "Eliteserien",
+		"country": "Norway",
+		"continent": "Europe"
+	},
+	{
+		"team": "Athletic Bilbao",
+		"type": "Fourth",
+		"season": "24/25",
+		"league": "La Liga",
+		"country": "Spain",
+		"continent": "Europe"
+	},
+	{
+		"team": "Al Nassr",
+		"type": "Home",
+		"season": "24/25",
+		"league": "Saudi Pro League",
+		"country": "Saudi Arabia",
+		"continent": "Asia"
+	},
+	{
+		"team": "FC Chitwan",
+		"type": "Away",
+		"season": "23",
+		"league": "Nepal Super League",
+		"country": "Nepal",
+		"continent": "Asia"
+	},
+	{
+		"team": "Teachers FC",
+		"type": "Home",
+		"season": "26/27",
+		"league": "TCIFA Premier League",
+		"country": "Turks and Caicos Islands",
+		"continent": "North America"
+	},
+	{
+		"team": "Tenerife",
+		"type": "Home",
+		"season": "25/26",
+		"league": "Primera Federacion",
+		"country": "Spain",
+		"continent": "Africa"
+	},
+	{
+		"team": "Barcelona",
+		"type": "Home",
+		"season": "92/93",
+		"league": "La Liga",
+		"country": "Spain",
+		"continent": "Europe"
+	},
+	{
+		"team": "Valencia",
+		"type": "Away",
+		"season": "15/16",
+		"league": "La Liga",
+		"country": "Spain",
+		"continent": "Europe"
+	},
+	{
+		"team": "West Papua",
+		"type": "Home",
+		"season": "25/26",
+		"league": "",
+		"country": "West Papua",
+		"continent": "Oceania"
+	},
+	{
+		"team": "Glacis United",
+		"type": "Home",
+		"season": "25/26",
+		"league": "Gibraltar Football League",
+		"country": "Gibraltar",
+		"continent": "Europe"
+	},
+	{
+		"team": "Poland",
+		"type": "Home",
+		"season": "2020",
+		"league": "",
+		"country": "Poland",
+		"continent": "Europe"
+	},
+	{
+		"team": "FC Dordrecht",
+		"type": "Away",
+		"season": "25/26",
+		"league": "Eerste Divisie",
+		"country": "Netherlands",
+		"continent": "Europe"
+	},
+	{
+		"team": "Al Hilal",
+		"type": "Away",
+		"season": "24/25",
+		"league": "Saudi Pro League",
+		"country": "Saudi Arabia",
+		"continent": "Asia"
+	}
+]
