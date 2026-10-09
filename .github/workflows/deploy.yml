@@ -4,6 +4,9 @@ on:
   push:
     branches: [master] # Trigger on every push to master
   workflow_dispatch:   # Allows manual triggers
+  schedule:
+    # 03:00 UTC on the 10th of each month, to pick up new shirts from the collection sheet
+    - cron: '0 3 10 * *'
 
 permissions:
   contents: read
@@ -16,6 +19,10 @@ jobs:
     steps:
       - name: Checkout your repository
         uses: actions/checkout@v4
+
+      - name: Pull the latest shirt collection from the Google Sheet
+        # Falls back to the committed src/data/shirts.json if the sheet can't be reached
+        run: node scripts/sync-shirts.mjs || echo "::warning::Couldn't reach the shirt sheet, building with the saved list"
 
       - name: Install, build, and upload your site
         uses: withastro/action@v3
