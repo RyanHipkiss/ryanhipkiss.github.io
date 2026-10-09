@@ -50,13 +50,17 @@ const socialImage = await getImage({ src: ME_PHOTO, width: 1200, format: 'jpg' }
 		<section class="blogs">
 			<div class="content">
 				<h3>Blogs</h3>
-				{posts.map((post) => (
-					<article class="post">
-						<h4><a href={`/blog/${post.slug}/`}>{post.data.title}</a></h4>
-						<small><time datetime={post.data.publishDate.toISOString().slice(0, 10)}>{formatDate(post.data.publishDate)}</time></small>
-						<p>{post.data.description}</p>
-					</article>
-				))}
+				<ul class="post-grid">
+					{posts.map((post) => (
+						<li>
+							<a class="post-tile" href={`/blog/${post.slug}/`}>
+								<time datetime={post.data.publishDate.toISOString().slice(0, 10)}>{formatDate(post.data.publishDate)}</time>
+								<h4>{post.data.title}</h4>
+								<p>{post.data.description}</p>
+							</a>
+						</li>
+					))}
+				</ul>
 			</div>
 		</section>
 		<Footer/>
