@@ -140,14 +140,9 @@ h1, h2, h3, h4, .tagline {
     margin-bottom: 1.5rem;
 }
 
-/* Gold text sits on a charcoal tag, the hero's pairing: gold on white is unreadable */
 .about .content .me strong {
-    padding: 0.1em 0.4em;
     color: #FDB913;
     font-weight: 700;
-    background: #231F20;
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
 }
 
 /* In longer post text, bold phrases get a lighter gold highlighter stripe */
