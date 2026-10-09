@@ -2,11 +2,15 @@
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import PostTiles from '../components/PostTiles.astro';
 import { formatDate } from '../utils/formatDate';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & {
+	readingMinutes: number;
+	morePosts: CollectionEntry<'blog'>[];
+};
 
-const { title, description, socialImage, publishDate } = Astro.props;
+const { title, description, socialImage, publishDate, readingMinutes, morePosts } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,16 +20,30 @@ const { title, description, socialImage, publishDate } = Astro.props;
 	</head>
 
 	<body>
-		<section class="blog-header">
-			<h1>{title}</h1>
-			<small><i>Ryan Hipkiss, Senior Software Engineer</i></small><br>
-			<small><time datetime={publishDate.toISOString().slice(0, 10)}>{formatDate(publishDate)}</time></small>
-			<hr>
-		</section>
-		<section class="blog-content">
+		<header class="post-header">
+			<div class="post-column">
+				<a href="/" class="post-back">Back to homepage</a>
+				<h1>{title}</h1>
+				<p class="post-meta">
+					<span>By Ryan Hipkiss</span>
+					<time datetime={publishDate.toISOString().slice(0, 10)}>{formatDate(publishDate)}</time>
+					<span>{readingMinutes} minute read</span>
+				</p>
+			</div>
+		</header>
+
+		<main class="post-column blog-content">
 			<slot />
-			<a href="/" class="home-link">Go Back</a>
-		</section>
+		</main>
+
+		{morePosts.length > 0 && (
+			<section class="blogs">
+				<div class="content">
+					<h3>More posts</h3>
+					<PostTiles posts={morePosts} />
+				</div>
+			</section>
+		)}
 		<Footer />
 	</body>
 </html>

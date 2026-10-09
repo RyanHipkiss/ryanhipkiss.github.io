@@ -3,21 +3,26 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
+  const blogEntries = (await getCollection('blog')).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
   return blogEntries.map(entry => ({
     params: { slug: entry.slug },
-    props: { entry },
+    props: {
+      entry,
+      morePosts: blogEntries.filter(other => other.slug !== entry.slug).slice(0, 3),
+    },
   }));
 }
 
 interface Props {
   entry: CollectionEntry<'blog'>;
+  morePosts: CollectionEntry<'blog'>[];
 }
 
-const { entry } = Astro.props;
+const { entry, morePosts } = Astro.props;
 const { Content } = await entry.render();
+const readingMinutes = Math.max(1, Math.round(entry.body.split(/\s+/).length / 200));
 ---
 
-<BlogPost {...entry.data}>
+<BlogPost {...entry.data} readingMinutes={readingMinutes} morePosts={morePosts}>
   <Content />
 </BlogPost>
