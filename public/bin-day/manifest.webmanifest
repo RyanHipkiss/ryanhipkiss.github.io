@@ -1,7 +1,7 @@
 {
   "name": "Bin Day",
   "short_name": "Bin Day",
-  "description": "When's my bin day? Sandwell, Dudley, Wolverhampton and Birmingham.",
+  "description": "When's my bin day? Sandwell, Dudley, Wolverhampton, Birmingham and South Staffordshire.",
   "start_url": "/bin-day/",
   "display": "standalone",
   "background_color": "#ffffff",

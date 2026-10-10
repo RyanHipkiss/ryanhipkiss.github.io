@@ -2,7 +2,7 @@
 
 Cloudflare Worker behind [ryanhipkiss.co.uk/bin-day](https://ryanhipkiss.co.uk/bin-day/). The page itself is static and lives in `../public/bin-day/`.
 
-It looks up bin collection days for **Sandwell, Dudley, Wolverhampton and Birmingham**. The council is worked out from the postcode via [postcodes.io](https://postcodes.io).
+It looks up bin collection days for **Sandwell, Dudley, Wolverhampton, Birmingham and South Staffordshire**. The council is worked out from the postcode via [postcodes.io](https://postcodes.io).
 
 - `GET /api/addresses?postcode=B71 1AA`
 - `GET /api/collections?postcode=B71 1AA&uprn=32113489`
@@ -25,6 +25,7 @@ Each module in `src/councils/` exports `id`, `name`, `gss` (local authority code
 | Dudley | AchieveForms lookups on my.dudley.gov.uk (next date per bin) |
 | Wolverhampton | Drupal address form + "find my nearest" page on wolverhampton.gov.uk (next date per bin) |
 | Birmingham | "Check your collection day" page on birmingham.gov.uk |
+| South Staffordshire | Drupal bin lookup form + "where I live" page on sstaffs.gov.uk |
 
 ## Develop and deploy
 

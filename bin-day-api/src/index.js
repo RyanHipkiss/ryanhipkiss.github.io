@@ -6,12 +6,13 @@ import sandwell from "./councils/sandwell.js";
 import dudley from "./councils/dudley.js";
 import wolverhampton from "./councils/wolverhampton.js";
 import birmingham from "./councils/birmingham.js";
+import southstaffs from "./councils/southstaffs.js";
 import { createStore, USER_POSTCODES_PER_WEEK } from "./store.js";
 import { NoScheduleError } from "./councils/common.js";
 
-const councils = Object.fromEntries([sandwell, dudley, wolverhampton, birmingham].map((c) => [c.id, c]));
+const councils = Object.fromEntries([sandwell, dudley, wolverhampton, birmingham, southstaffs].map((c) => [c.id, c]));
 const councilsByGss = Object.fromEntries(Object.values(councils).map((c) => [c.gss, c]));
-const COVERED = "Sandwell, Dudley, Wolverhampton and Birmingham";
+const COVERED = "Sandwell, Dudley, Wolverhampton, Birmingham and South Staffordshire";
 
 const ALLOWED_ORIGINS = ["https://ryanhipkiss.co.uk", "https://www.ryanhipkiss.co.uk"];
 const LOCAL_ORIGIN_RE = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
