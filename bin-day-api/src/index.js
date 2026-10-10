@@ -7,6 +7,7 @@ import dudley from "./councils/dudley.js";
 import wolverhampton from "./councils/wolverhampton.js";
 import birmingham from "./councils/birmingham.js";
 import { createStore, USER_POSTCODES_PER_WEEK } from "./store.js";
+import { NoScheduleError } from "./councils/common.js";
 
 const councils = Object.fromEntries([sandwell, dudley, wolverhampton, birmingham].map((c) => [c.id, c]));
 const councilsByGss = Object.fromEntries(Object.values(councils).map((c) => [c.gss, c]));
@@ -39,6 +40,25 @@ function todayIso() {
 
 // Concurrent cache misses in the same isolate share one council request
 const inFlight = new Map();
+
+// A council with no schedule for an address is an answer to cache, not a failure
+async function loadCollections(council, uprn, postcode) {
+  try {
+    return { collections: await council.getCollections(uprn, postcode) };
+  } catch (err) {
+    if (err instanceof NoScheduleError) return { collections: [], notice: { message: err.message, link: err.link } };
+    throw err;
+  }
+}
+
+// "3, DELLA DRIVE" or "2 Arlington Road, West Bromwich" -> { number: 3, street: "DELLA DRIVE" }
+function houseNumberAndStreet(label) {
+  const m = /^(\d+)[A-Z]?,?\s+([^,]+)/i.exec(label.trim());
+  return m ? { number: Number(m[1]), street: m[2].trim().toUpperCase() } : null;
+}
+
+// How many nearby houses to try when a council has no schedule for an address
+const NEIGHBOURS_TO_TRY = 3;
 
 function createApi(env, request) {
   const store = createStore(env.BINS);
@@ -95,23 +115,60 @@ function createApi(env, request) {
     return { postcode, ...entry.value, checkedAt: new Date(entry.at).toISOString() };
   }
 
+  // The council's answer for one address, from the cache or a fresh lookup
+  async function collectionsEntry(council, postcode, uprn) {
+    const key = `collections:${council.id}:${uprn}`;
+    const entry = (await store.getCached(key)) ?? (await fetchForUser(postcode, key, () => loadCollections(council, uprn, postcode)));
+    // Entries cached before notices were added are plain arrays
+    return Array.isArray(entry.value) ? { ...entry, value: { collections: entry.value } } : entry;
+  }
+
+  // Rounds go street by street, so when the council has no schedule for an address,
+  // use the nearest house number on the same street (same postcode) that has one
+  async function nearestNeighbour(council, postcode, addresses, address) {
+    const home = houseNumberAndStreet(address.label);
+    if (!home) return null;
+    const candidates = addresses
+      .map((a) => ({ address: a, house: houseNumberAndStreet(a.label) }))
+      .filter(({ address: a, house }) => a.uprn !== address.uprn && house?.street === home.street)
+      .sort((x, y) => Math.abs(x.house.number - home.number) - Math.abs(y.house.number - home.number) || x.house.number - y.house.number)
+      .slice(0, NEIGHBOURS_TO_TRY);
+
+    for (const { address: neighbour } of candidates) {
+      const entry = await collectionsEntry(council, postcode, neighbour.uprn);
+      if (entry.value.collections.length) return { address: neighbour, entry };
+    }
+    return null;
+  }
+
   async function getCollections(postcode, uprn) {
     // Only addresses from this postcode's (cached) search are allowed
-    const addresses = await store.getCached(`addresses:${postcode}`);
-    if (!addresses?.value.addresses.some((a) => a.uprn === uprn)) {
-      throw new HttpError(400, "Please search for your postcode again.");
-    }
-    const council = councils[addresses.value.council.id];
+    const cached = await store.getCached(`addresses:${postcode}`);
+    const address = cached?.value.addresses.find((a) => a.uprn === uprn);
+    if (!address) throw new HttpError(400, "Please search for your postcode again.");
+    const council = councils[cached.value.council.id];
 
-    const key = `collections:${council.id}:${uprn}`;
-    let entry = await store.getCached(key);
-    if (!entry) entry = await fetchForUser(postcode, key, () => council.getCollections(uprn, postcode));
+    let entry = await collectionsEntry(council, postcode, uprn);
+    let { collections, notice } = entry.value;
+
+    if (!collections.length && notice) {
+      const neighbour = await nearestNeighbour(council, postcode, cached.value.addresses, address);
+      if (neighbour) {
+        entry = neighbour.entry;
+        collections = entry.value.collections;
+        notice = {
+          ...notice,
+          message: `${council.name} has no schedule for ${address.label}, so these dates are from ${neighbour.address.label}, the nearest address on your street that has one.`,
+        };
+      }
+    }
 
     // Cached dates may have passed since they were fetched
     return {
       uprn,
       council: councilSummary(council),
-      collections: entry.value.filter((c) => c.date >= todayIso()),
+      collections: collections.filter((c) => c.date >= todayIso()),
+      ...(notice && { notice }),
       checkedAt: new Date(entry.at).toISOString(),
     };
   }

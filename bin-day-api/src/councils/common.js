@@ -3,6 +3,15 @@
 export const UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0 Safari/537.36";
 
+// Thrown when the council answers but has no collection schedule for an address
+// (e.g. a new build). The message and link are shown to the user and cached like any answer.
+export class NoScheduleError extends Error {
+  constructor(message, link) {
+    super(message);
+    this.link = link;
+  }
+}
+
 // Display order for bins collected on the same day
 const BIN_ORDER = ["household", "recycling", "garden", "food"];
 

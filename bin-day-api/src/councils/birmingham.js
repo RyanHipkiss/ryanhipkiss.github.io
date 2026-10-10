@@ -2,7 +2,7 @@
 // The "Check your collection day" page lists addresses for ?postcode= and, with &uprn=,
 // shows a table of upcoming collections ("Wednesday 14 October | Rubbish | ").
 
-import { UA, decodeHtml, sortAddresses, tidyCollections, typeFromName, isoFromDate } from "./common.js";
+import { UA, NoScheduleError, decodeHtml, sortAddresses, tidyCollections, typeFromName, isoFromDate } from "./common.js";
 
 const PAGE_URL = "https://www.birmingham.gov.uk/info/50388/check_your_collection_day";
 
@@ -41,6 +41,13 @@ export async function findAddresses(postcode) {
 
 export async function getCollections(uprn, postcode) {
   const html = await getPage({ postcode, uprn });
+  if (html.includes("unable to find your rubbish collection schedule")) {
+    throw new NoScheduleError("Birmingham City Council doesn't have a collection schedule for this address yet.", {
+      href: "https://waste.birmingham.gov.uk/",
+      text: "Check Birmingham's Waste Portal",
+    });
+  }
+
   const table = /<table[^>]*class="[^"]*data-table[^"]*"[^>]*>[\s\S]*?<tbody>([\s\S]*?)<\/tbody>/.exec(html)?.[1];
   if (table == null) throw new Error("Birmingham collections table not found");
 

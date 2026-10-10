@@ -375,3 +375,32 @@ body:has(> .bin-day) > .bin-day {
         animation-duration: 2s;
     }
 }
+
+.bin-day .empty p {
+    margin-top: 12px;
+}
+
+.bin-day .empty a {
+    color: #231F20;
+    font-weight: 700;
+    text-decoration-color: #FDB913;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 3px;
+}
+
+/* Explains dates borrowed from a neighbouring address */
+.bin-day .notice {
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    line-height: 1.6;
+    border-left: 5px solid #FDB913;
+    background: #f6f5f3;
+}
+
+.bin-day .notice a {
+    color: #231F20;
+    font-weight: 700;
+    text-decoration-color: #FDB913;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 3px;
+}

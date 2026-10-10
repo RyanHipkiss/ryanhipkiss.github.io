@@ -101,12 +101,15 @@ function showError(text) {
   results.replaceChildren(el("div", { class: "error-box" }, text));
 }
 
-function renderCollections(address, collections, checkedAt) {
+function renderCollections(address, collections, checkedAt, notice) {
   const addressLine = el("p", { class: "address-line" }, address, ` · dates checked ${fmtChecked.format(new Date(checkedAt))}`);
   if (!collections.length) {
     results.replaceChildren(
       addressLine,
-      el("div", { class: "card empty" }, "No upcoming collections were found for this address.")
+      el("div", { class: "card empty" },
+        notice ? notice.message : "No upcoming collections were found for this address.",
+        notice?.link && el("p", {}, el("a", { href: notice.link.href, target: "_blank", rel: "noopener" }, notice.link.text))
+      )
     );
     return;
   }
@@ -129,7 +132,13 @@ function renderCollections(address, collections, checkedAt) {
     )
   );
 
-  const children = [addressLine, hero];
+  const children = [addressLine];
+  // e.g. the council had no schedule, so these dates come from a neighbouring address
+  if (notice) {
+    children.push(el("p", { class: "notice" }, notice.message, " ",
+      notice.link && el("a", { href: notice.link.href, target: "_blank", rel: "noopener" }, notice.link.text)));
+  }
+  children.push(hero);
 
   if (rest.length) {
     children.push(
@@ -216,11 +225,11 @@ async function loadCollections() {
   showStatus("Checking collection dates…");
 
   try {
-    const { collections, checkedAt } = await api(
+    const { collections, checkedAt, notice } = await api(
       `/api/collections?postcode=${encodeURIComponent(currentPostcode)}&uprn=${encodeURIComponent(uprn)}`
     );
     if (addressSelect.value !== uprn) return; // user picked another address meanwhile
-    renderCollections(`${label}, ${currentPostcode}`, collections, checkedAt);
+    renderCollections(`${label}, ${currentPostcode}`, collections, checkedAt, notice);
   } catch (err) {
     showError(err.message);
   }
