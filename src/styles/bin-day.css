@@ -1,0 +1,377 @@
+/* Bin Day (/bin-day/): reuses the site's post header, column and footer.
+   Frames, buttons and the gold 120deg wedge follow the post and shirt tiles. */
+
+/* Keep the footer at the bottom while the page is still short (before results) */
+body:has(> .bin-day) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+}
+
+body:has(> .bin-day) > .bin-day {
+    flex: 1;
+    width: 100%;
+}
+
+.bin-day {
+    --bin-household: #4d555c;
+    --bin-household-lid: #2f353a;
+    --bin-recycling: #2a64c5;
+    --bin-recycling-lid: #1b4a99;
+    --bin-food: #8b5a2b;
+    --bin-food-lid: #6a421d;
+    --bin-garden: #3e8a3a;
+    --bin-garden-lid: #2a6527;
+
+    padding-top: 50px;
+    padding-bottom: 70px;
+    color: #231F20;
+}
+
+/* Councils covered, in the header's meta row */
+.bin-councils {
+    list-style: none;
+}
+
+.bin-intro {
+    margin-bottom: 30px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+}
+
+/* Finder */
+.bin-day .finder {
+    padding: 28px;
+    border: 5px solid #231F20;
+}
+
+.bin-day .step {
+    margin-top: 20px;
+}
+
+.bin-day label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.bin-day .council-name {
+    margin-left: 6px;
+    font-weight: 400;
+    color: #555;
+}
+
+.bin-day .row {
+    display: flex;
+    gap: 10px;
+}
+
+.bin-day input,
+.bin-day select,
+.bin-day button {
+    min-height: 50px;
+    font: inherit;
+    border-radius: 0;
+}
+
+.bin-day input,
+.bin-day select {
+    width: 100%;
+    padding: 0 14px;
+    color: #231F20;
+    background: white;
+    border: 3px solid #231F20;
+}
+
+.bin-day input {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.bin-day input::placeholder {
+    text-transform: none;
+    letter-spacing: 0;
+    color: #555;
+}
+
+.bin-day button {
+    padding: 0 24px;
+    font-weight: 700;
+    color: #FDB913;
+    white-space: nowrap;
+    background: #231F20;
+    border: 3px solid #231F20;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}
+
+.bin-day button:hover:not(:disabled) {
+    color: #231F20;
+    background: #FDB913;
+}
+
+.bin-day button:disabled {
+    opacity: 0.6;
+    cursor: progress;
+}
+
+.bin-day input:focus-visible,
+.bin-day select:focus-visible,
+.bin-day button:focus-visible {
+    outline: 3px solid #FDB913;
+    outline-offset: 3px;
+}
+
+.bin-day .field-msg {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #b3261e;
+}
+
+.bin-day .field-msg:empty {
+    display: none;
+}
+
+/* Results */
+#results {
+    margin-top: 40px;
+}
+
+.bin-day .status {
+    padding: 28px 0;
+    text-align: center;
+    color: #555;
+}
+
+.bin-day .spinner {
+    width: 26px;
+    height: 26px;
+    margin: 0 auto 12px;
+    border: 4px solid #ddd;
+    border-top-color: #FDB913;
+    border-radius: 50%;
+    animation: bin-spin 0.8s linear infinite;
+}
+
+@keyframes bin-spin {
+    to { transform: rotate(360deg); }
+}
+
+.bin-day .address-line {
+    margin-bottom: 12px;
+    color: #555;
+}
+
+/* Next collection: a charcoal tile with the hero's gold corner wedge */
+.bin-day .next {
+    padding: 28px 28px 32px;
+    color: white;
+    background-color: #231F20;
+    background-image: linear-gradient(120deg, transparent 88%, #FDB913 88%);
+}
+
+.bin-day .next .eyebrow {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #FDB913;
+}
+
+.bin-day .next .date {
+    margin: 6px 0 12px;
+    font-size: clamp(2.25rem, 8vw, 3.25rem);
+    line-height: 1.05;
+}
+
+.bin-day .countdown {
+    display: inline-block;
+    padding: 4px 12px;
+    font-weight: 700;
+    color: #FDB913;
+    border: 3px solid #FDB913;
+}
+
+.bin-day .countdown.soon {
+    color: #231F20;
+    background: #FDB913;
+}
+
+.bin-day .next-bins {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.bin-day .next-bin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 10px 16px;
+    text-align: center;
+    color: #231F20;
+    background: white;
+}
+
+.bin-day .next-bin .bin-icon {
+    width: 48px;
+    height: 58px;
+}
+
+.bin-day .next-bin strong {
+    font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.35rem;
+    line-height: 1.1;
+}
+
+.bin-day .next-bin span {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+/* Bin icon colours */
+.bin-day .bin-icon .wheel { fill: #231F20; }
+.bin-day .bin-icon .hinge { fill: #555; }
+.bin-day .bin-icon .handle { stroke: #555; }
+.bin-day .t-household .bin-icon .body { fill: var(--bin-household); }
+.bin-day .t-household .bin-icon .lid { fill: var(--bin-household-lid); }
+.bin-day .t-recycling .bin-icon .body { fill: var(--bin-recycling); }
+.bin-day .t-recycling .bin-icon .lid { fill: var(--bin-recycling-lid); }
+.bin-day .t-food .bin-icon .body { fill: var(--bin-food); }
+.bin-day .t-food .bin-icon .lid { fill: var(--bin-food-lid); }
+.bin-day .t-garden .bin-icon .body { fill: var(--bin-garden); }
+.bin-day .t-garden .bin-icon .lid { fill: var(--bin-garden-lid); }
+
+/* Coming up: heading with the site's gold bar, rows ruled like the section dividers */
+.bin-day .upcoming h2 {
+    margin: 50px 0 24px;
+    font-size: 2.25rem;
+    line-height: 1.25;
+}
+
+.bin-day .upcoming h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 5px;
+    margin-top: 10px;
+    background: #FDB913;
+}
+
+.bin-day .timeline {
+    list-style: none;
+    border-top: 5px solid #231F20;
+}
+
+.bin-day .timeline li {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 18px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.bin-day .cal {
+    text-align: center;
+    border: 3px solid #231F20;
+}
+
+.bin-day .cal .m {
+    display: block;
+    padding: 2px 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #FDB913;
+    background: #231F20;
+}
+
+.bin-day .cal .d {
+    display: block;
+    font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.bin-day .when .day {
+    font-weight: 700;
+}
+
+.bin-day .when .rel {
+    margin-left: 8px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.bin-day .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.bin-day .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px 3px 6px;
+    font-size: 0.85rem;
+    border: 2px solid #231F20;
+}
+
+.bin-day .chip .bin-icon {
+    width: 14px;
+    height: 17px;
+}
+
+.bin-day .empty,
+.bin-day .error-box {
+    padding: 20px;
+    text-align: center;
+}
+
+.bin-day .empty {
+    border: 5px solid #231F20;
+}
+
+.bin-day .error-box {
+    color: #b3261e;
+    border-left: 5px solid #b3261e;
+    background: rgba(179, 38, 30, 0.06);
+}
+
+.bin-note {
+    margin-top: 50px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+@media (max-width: 480px) {
+    .bin-day .finder {
+        padding: 20px;
+    }
+
+    .bin-day .row {
+        flex-direction: column;
+    }
+
+    .bin-day button {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bin-day button {
+        transition: none;
+    }
+
+    .bin-day .spinner {
+        animation-duration: 2s;
+    }
+}

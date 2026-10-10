@@ -1,0 +1,13 @@
+name = "bin-day-api"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+# Weekly cache of council responses and the per-user lookup quota.
+# Create with `npx wrangler kv namespace create BINS` and paste the id below.
+[[kv_namespaces]]
+binding = "BINS"
+id = "1bcf0a1bd7c44525b97538dc6bbb4a28"
+
+[observability]
+enabled = true

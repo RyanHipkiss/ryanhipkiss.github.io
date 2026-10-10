@@ -1,0 +1,82 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/bin-day.css';
+
+// Lookups go through the Bin Day API, a Cloudflare Worker in bin-day-api/.
+// The page script and icons live in public/bin-day/.
+const description = 'Find your next bin collection day in Sandwell, Dudley, Wolverhampton or Birmingham.';
+---
+
+<!doctype html>
+<html lang="en-GB">
+	<head>
+		<BaseHead title="Bin Day | Ryan Hipkiss" description={description} />
+		<link rel="manifest" href="/bin-day/manifest.webmanifest">
+	</head>
+
+	<body>
+		<header class="post-header">
+			<div class="post-column">
+				<a href="/" class="post-back">Back to homepage</a>
+				<h1>When's my bin day?</h1>
+				<ul class="post-meta bin-councils">
+					<li>Sandwell</li>
+					<li>Dudley</li>
+					<li>Wolverhampton</li>
+					<li>Birmingham</li>
+				</ul>
+			</div>
+		</header>
+
+		<main class="post-column bin-day">
+			<p class="bin-intro">Enter your postcode to see your next collection and what's coming up.</p>
+
+			<section class="finder" aria-label="Find your address">
+				<form id="postcode-form" novalidate>
+					<label for="postcode">Postcode</label>
+					<div class="row">
+						<input id="postcode" name="postcode" type="text" autocomplete="postal-code"
+							placeholder="e.g. B71 1AA" maxlength="8" spellcheck="false" required>
+						<button type="submit" id="find-btn">Find address</button>
+					</div>
+					<p class="field-msg" id="postcode-msg" role="alert"></p>
+				</form>
+
+				<div class="step" id="address-step" hidden>
+					<label for="address">Address <span class="council-name" id="council-name"></span></label>
+					<select id="address"></select>
+				</div>
+			</section>
+
+			<section id="results" aria-live="polite"></section>
+
+			<p class="bin-note">
+				Collection dates come from each council's own bin day service and are refreshed once a week.
+				Check your council's notices around bank holidays.
+			</p>
+		</main>
+
+		<Footer />
+
+		<template id="bin-icon">
+			<svg class="bin-icon" viewBox="0 0 40 48" aria-hidden="true">
+				<rect class="lid" x="3" y="4" width="34" height="7" rx="2"/>
+				<rect class="hinge" x="14" y="1" width="12" height="4" rx="1.5"/>
+				<path class="body" d="M6 12h28l-2.6 29a3 3 0 0 1-3 2.7H11.6a3 3 0 0 1-3-2.7z"/>
+				<circle class="wheel" cx="12" cy="44.5" r="3"/>
+				<circle class="wheel" cx="28" cy="44.5" r="3"/>
+			</svg>
+		</template>
+
+		<template id="caddy-icon">
+			<svg class="bin-icon" viewBox="0 0 40 48" aria-hidden="true">
+				<path class="handle" d="M10 18c0-9 20-9 20 0" fill="none" stroke-width="3"/>
+				<rect class="lid" x="5" y="18" width="30" height="6" rx="2"/>
+				<path class="body" d="M7 24h26l-2 18a3 3 0 0 1-3 2.6H12a3 3 0 0 1-3-2.6z"/>
+			</svg>
+		</template>
+
+		<script is:inline type="module" src="/bin-day/app.js"></script>
+	</body>
+</html>

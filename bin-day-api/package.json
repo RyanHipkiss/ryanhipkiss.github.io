@@ -1,0 +1,13 @@
+{
+  "name": "bin-day-api",
+  "private": true,
+  "type": "module",
+  "description": "Bin Day API for ryanhipkiss.co.uk/bin-day (Cloudflare Worker)",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
