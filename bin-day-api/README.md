@@ -37,4 +37,6 @@ npm run deploy    # needs `npx wrangler login` first
 
 First deploy only: `npx wrangler kv namespace create BINS`, then put the id it prints into `wrangler.toml`.
 
+Pushes to `master` that change `bin-day-api/` deploy automatically via `.github/workflows/deploy-bin-day-api.yml`. It needs a Cloudflare API token (the "Edit Cloudflare Workers" template) saved as the `CLOUDFLARE_API_TOKEN` repository secret.
+
 Free plan limits: 100,000 requests/day, 100,000 KV reads/day and 1,000 KV writes/day. When a limit is hit, requests fail until midnight UTC. Nothing is charged.

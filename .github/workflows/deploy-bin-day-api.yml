@@ -1,0 +1,25 @@
+name: Deploy Bin Day API
+
+on:
+  push:
+    branches: [master]
+    paths: ['bin-day-api/**'] # Only when the Worker changes
+  workflow_dispatch:          # Allows manual triggers
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository
+        uses: actions/checkout@v4
+
+      - name: Deploy the Worker to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          # Needs a Cloudflare API token ("Edit Cloudflare Workers" template) saved as this repo secret
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: e11a8802872961a928fb4435cc43e6df
+          workingDirectory: bin-day-api
